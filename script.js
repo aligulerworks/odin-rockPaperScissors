@@ -21,25 +21,32 @@ function computerPlay() {
 }
 
 // player ready?
-function kickStart() {
+function game() {
    const startTheGame = confirm(`You wanna play?`);
-   if (startTheGame === true) {playRound(playerPlay(),computerPlay())}
-else {
-   console.log('Good day sir!');
+
+   if (startTheGame === false) {
+      console.log('Good day sir!');
+   } else {
+      for (forLoopCounter = 1; forLoopCounter < 6; forLoopCounter++) {
+      console.log(`Round: ${forLoopCounter}`);
+      playRound(playerPlay(),computerPlay()) }
+      console.log (`--- FINISHED ---
+      YOU: ${playerScore}
+      ME: ${computerScore}`);
+      gameResult(playerScore, computerScore);
+   }
 }
-}
 
-
-
-   
+// scores & counters ready
+let playerScore = 0;
+let computerScore = 0;
+let forLoopCounter = 0; // to replay the round when typo mistake happens.
 
 // Let player play 
 function playerPlay() {
    let playerSelection = (prompt('Rock, Paper or Scissors?')).toLowerCase();
    return playerSelection;
 }
-
-
 
 
 // Start the game for both parties
@@ -57,11 +64,11 @@ Mine: ${computer}
       (( player === 'rock' & computer === 'paper' ) ||
       ( player === 'scissors' & computer === 'rock' ) || 
       ( player === 'paper' & computer === 'scissors' ))
-   {
+   {  computerScore = computerScore + 1;
          console.log(
-`You loose!
-Yours: ${player}
-Mine: ${computer}`)
+                  `You loose!
+                  Yours: ${player}
+                  Mine: ${computer}`)
       
    } else if (
       (player === 'rock') ||
@@ -69,13 +76,14 @@ Mine: ${computer}`)
       (player === 'scissors')
    ) 
    
-   {
+   {  playerScore = playerScore + 1;
       console.log(
 `You win!
 Yours: ${player}
 Mine: ${computer}`)
 
    } else {
+      forLoopCounter = forLoopCounter - 1;
       console.log(`
 This what is either a typo or you're a horrible person. 
 Here is what you wrote: ${player.toUpperCase()}. 
@@ -85,6 +93,18 @@ Are you happy???`)
 
 }
 
+function gameResult(player, computer) {
+   if (player > computer) {
+      console.log(`YOU WIN!`)
+   } else if (player < computer) {
+      console.log('I WIN MADAFAKA!')
+   } else {
+      console.log(`WE'RE TIED.`)
+   }
+   
+}
 
 
-kickStart();
+
+game();
+
