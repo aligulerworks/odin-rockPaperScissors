@@ -20,22 +20,23 @@ function computerPlay() {
    return result;
 }
 
-// player ready?
-function game() {
-   const startTheGame = confirm(`You wanna play?`);
-
-   if (startTheGame === false) {
-      console.log('Good day sir!');
-   } else {
-      for (forLoopCounter = 1; forLoopCounter < 6; forLoopCounter++) {
-      console.log(`Round: ${forLoopCounter}`);
-      playRound(playerPlay(),computerPlay()) }
-      console.log (`--- FINISHED ---
-      YOU: ${playerScore}
-      ME: ${computerScore}`);
-      gameResult(playerScore, computerScore);
-   }
-}
+// Start
+// function game() {
+//    const startTheGame = confirm(`You wanna play?`);
+// 
+//    if (startTheGame === false) {
+//       console.log('Good day sir!');
+//    } else {
+// // Rounds Counter
+//       for (let i = 1; i < 6; i++) {
+//        console.log(`Round: ${i}`);
+//          playRound(playerPlay(),computerPlay()) };
+//       console.log (`--- FINISHED ---
+//       YOU: ${playerScore}
+//       ME: ${computerScore}`);
+//       gameResult(playerScore, computerScore);
+//    };
+// };
 
 // scores & counters ready
 let playerScore = 0;
@@ -106,5 +107,5 @@ function gameResult(player, computer) {
 
 
 
-game();
+// game();
 
