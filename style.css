@@ -1,6 +1,6 @@
 * {
    margin: 0;
-   font-size: 3.2svw;
+   font-size: 2vw;
    --font: 'Radio Canada', sans-serif;
 
    font-family: var(--font);
@@ -14,6 +14,7 @@ html {
    height: 100%;
    width: 100%;
    box-sizing: border-box;
+
    
 
 }
@@ -22,59 +23,55 @@ body {
    display: grid;
    background: red;
    font-family: 'Radio Canada', sans-serif;
-      /* VARIABLES */
-   }
+}
+
+p, button {
+   font-size: 1.2rem;
+}
+h2 {
+   font-size: 3rem;
+}
+
+button {
+   cursor: pointer;
+   position: relative;
+   background-color: transparent;
+   color: white;
+   border: 1px solid white;
+   border-radius: 50%;
+   text-align: center;
+   padding: 0.4rem;
+   overflow: visible;
+   width: 6rem;
+   height: 6rem;
+
+   transform-origin: center;
+   transition: background-color ease 500ms, transform ease 500ms;
+
+}
+
+button:hover {
+   background-color: rgba(255, 255, 255, 0.62);
+   color: black;
+   transform: scale(111%);
+}
 
 #start-modal {
    position: fixed;
    place-self: center;
-   width: 62vw;
-   height: 32vw;
-   background: rgb(255, 255, 255);
-   border-radius: 1.62rem;
-   border: 1px solid white;
-
-
    display: grid;
+   text-align: center;
    place-items: center;
    place-content: center;
-   grid-template-areas: 
-   "query query"
-   "yes no";
-   column-gap: 2rem;
-   row-gap: 2rem;
-   
-   z-index: 10;
-}
 
-#start-modal::before {
-   position: fixed;
-   content: "";
-   z-index: -1;
+   z-index: 10;
+
+   background: rgba(255, 255, 255, 0.05);
+   backdrop-filter: blur(0.44rem);
    width: 100vw;
    height: 100vh;
-   overflow: hidden;
-   background: rgba(0, 0, 0, 0.35);
-   backdrop-filter: blur(0.44rem);
 }
 
-
-/* modal area buttons  */
-.query {
-   grid-area: query;
-}
-
-.yes {
-   grid-area: yes;
-}
-
-.no {
-   grid-area: no;
-}
-
-
-
-  
 
 .game-buttons {
    margin: 1rem 0 0 0;
@@ -88,25 +85,16 @@ body {
    box-sizing: 0 0.2rem 0.2rem 0 rgba(0 0 0 0.2);
 }
 
-
-
-button {
-   position: relative;
+.game-buttons button {
    background: rgb(237, 237, 237);
    border: none;
-   border-radius: 50%;
-   text-align: center;
-   padding: 0.4rem;
    overflow: visible;
-   width: 5rem;
-   height: 5rem;
 
    box-shadow: inset 0.2rem 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.21);
    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.396));
-   transform-origin: center;
 }
 
-button:after {
+.game-buttons button:after {
    position: absolute;
    left: 0;
    top: 0;
@@ -124,24 +112,16 @@ button:after {
 
 }
 
-button:active:after {
-   /* width: 10rem;
-   height: 10rem; */
-   transform: scale(10);
-   border: 1px solid rgba(255, 255, 255, 0);
-}
-
-button:hover {
+.game-buttons button:hover {
    background: rgb(255, 255, 255);
    box-shadow: inset 0px 0px 0rem 0rem red;
    filter: drop-shadow(0px 0px 0.4rem white);
-   cursor: pointer;
    transition: box-shadow ease-in-out 200ms, filter ease-in-out 400ms;
    transition-delay: filter 200ms;
 
 }
 
-button:active {
+.game-buttons button:active {
    transition-duration: 1000ms;
    transition-delay: 1500ms;
    box-shadow: 0px 0px 20rem 20rem white;
@@ -174,5 +154,7 @@ button:active {
    transition: transform ease 500ms;
 }
 #pc-rock, #pc-paper, #pc-scissors {
-   right: -15vw;
+   right: -2vw;
+   transition: transform ease 500ms;
+
 }
