@@ -24,49 +24,50 @@ const checkRound = function (hit) {
 };
 
 computerPlay;
+
 // COMPUTER PLAY
 function computerPlay() {
   let result,
     generator = Math.floor(Math.random() * 3) + 1;
 
-  console.log(generator);
   if (generator === 1) {
     pcPaper.style.visibility = 'hidden';
     pcScissors.style.visibility = 'hidden';
 
-    pcPaper.style.transform = 'translate(10vw, 0)';
-    pcScissors.style.transform = 'translate(10vw, 0)';
+    pcPaper.style.transform = 'translate(60vw, 0)';
+    pcScissors.style.transform = 'translate(60vw, 0)';
 
     pcRock.style.visibility = 'visible';
-    pcRock.style.transform = 'translate(-12vw, 0)';
+    pcRock.style.transform = 'translate(-60vw, 0)';
     result = 'rock';
   }
   if (generator === 2) {
     pcRock.style.visibility = 'hidden';
     pcScissors.style.visibility = 'hidden';
 
-    pcRock.style.transform = 'translate(10vw, 0)';
-    pcScissors.style.transform = 'translate(10vw, 0)';
+    pcRock.style.transform = 'translate(60vw, 0)';
+    pcScissors.style.transform = 'translate(60vw, 0)';
 
     pcPaper.style.visibility = 'visible';
-    pcPaper.style.transform = 'translate(-12vw, 0)';
-    x;
+    pcPaper.style.transform = 'translate(-60vw, 0)';
     result = 'paper';
   }
   if (generator === 3) {
     pcRock.style.visibility = 'hidden';
     pcPaper.style.visibility = 'hidden';
 
-    pcRock.style.transform = 'translate(10vw, 0)';
-    pcPaper.style.transform = 'translate(10vw, 0)';
+    pcRock.style.transform = 'translate(60vw, 0)';
+    pcPaper.style.transform = 'translate(60vw, 0)';
 
     pcScissors.style.visibility = 'visible';
-    pcScissors.style.transform = 'translate(-12vw, 0)';
+    pcScissors.style.transform = 'translate(-60vw, 0)';
     result = 'scissors';
   }
+  return generator;
 }
 
-function userGame() {
+// USER ACTION
+function userPlay() {
   rock.addEventListener('click', () => {
     userPaper.style.visibility = 'hidden';
     userScissors.style.visibility = 'hidden';
@@ -75,7 +76,9 @@ function userGame() {
     userScissors.style.transform = 'translate(-60vw, 0)';
 
     userRock.style.visibility = 'visible';
-    userRock.style.transform = 'translate(62vw, 0)';
+    userRock.style.transform = 'translate(60vw, 0)';
+    computerPlay();
+    return 1;
   });
 
   paper.addEventListener('click', () => {
@@ -87,6 +90,8 @@ function userGame() {
 
     userPaper.style.visibility = 'visible';
     userPaper.style.transform = 'translate(60vw, 0)';
+    computerPlay();
+    return 2;
   });
 
   scissors.addEventListener('click', () => {
@@ -98,6 +103,8 @@ function userGame() {
 
     userScissors.style.visibility = 'visible';
     userScissors.style.transform = 'translate(60vw, 0)';
+    computerPlay();
+    return 3;
   });
 }
 
@@ -108,45 +115,36 @@ function game() {
 
   //remove Starter
   startModal.remove();
-  userGame;
 }
 // A ROUND
-function playRound() {
-  playerPlay;
-  computerPlay;
-
-  if (playerPlay === computerPlay) {
-    console.log(
-      `It's a Draw Barrymoore!
+userPlay();
+if (userPlay === computerPlay) {
+  console.log(
+    `It's a Draw Barrymoore!
 Yours: ${player}
 Mine: ${computer}
       `
-    );
-  } else if (
-    (playerPlay === 'rock') & (computerPlay === 'paper') ||
-    (playerPlay === 'scissors') & (computerPlay === 'rock') ||
-    (playerPlay === 'paper') & (computerPlay === 'scissors')
-  ) {
-    computerScore = computerScore + 1;
-    console.log(
-      `You loose!
+  );
+} else if (
+  (userPlay() === 1) & (computerPlay() === 2) ||
+  (userPlay() === 3) & (computerPlay() === 1) ||
+  (userPlay() === 2) & (computerPlay() === 3)
+) {
+  computerScore = computerScore + 1;
+  console.log(
+    `You loose!
                   Yours: ${playerPick}
                   Mine: ${computerPick}`
-    );
-  } else if (
-    playerPick === 'rock' ||
-    playerPick === 'paper' ||
-    playerPick === 'scissors'
-  ) {
-    playerScore = playerScore + 1;
-    console.log(
-      `You win!
+  );
+} else if (userPlay() === 1 || userPlay() === 2 || userPlay() === 3) {
+  playerScore = playerScore + 1;
+  console.log(
+    `You win!
 Yours: ${playerPick}
 Mine: ${computerPick}`
-    );
-  } else {
-    false;
-  }
+  );
+} else {
+  false;
 }
 
 function gameResult(player, computer) {

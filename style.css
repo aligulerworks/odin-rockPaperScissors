@@ -151,10 +151,11 @@ button:hover {
 
 #user-rock, #user-paper, #user-scissors {
    left: -15vw;
-   transition: transform ease 500ms;
+   transition: transform ease-in 800ms;
 }
 #pc-rock, #pc-paper, #pc-scissors {
-   right: -2vw;
-   transition: transform ease 500ms;
+   right: -15vw;
+   transition: transform ease-in 800ms;
+   transition-delay: 1000ms;
 
 }
