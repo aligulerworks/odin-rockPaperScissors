@@ -16,30 +16,62 @@
     <!-- end google fonts -->
 
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script src="alterJS3.js" defer></script>
   </head>
   <body>
     <div id="start-modal">
       <button id="start">Start</button>
     </div>
 
-    <div class="game-buttons">
+    <div id="interactions">
+      <div class="scoreboard">
+        <h3 id="round-board">Round: 0</h3>
+        <h3 id="scores">0 : 0</h3>
+      </div>
+      <div class="round-interactions">
+        <h3 id="smash">Bring It On!</h3>
+      </div>
+    </div>
+
+    <div class="arena">
+      <div class="user-side">
+        <img
+          id="user-rock"
+          src="/images/user-rock.png"
+          alt="Rock Illustration"
+        />
+        <img
+          id="user-paper"
+          src="/images/user-paper.png"
+          alt="Paper Illustration"
+        />
+        <img
+          id="user-scissors"
+          src="/images/user-sciss.png"
+          alt="Scissor Illustration"
+        />
+      </div>
+      <div class="pc-side" id="pc-side">
+        <img id="pc-rock" src="/images/pc-rock.png" alt="Rock Illustration" />
+        <img
+          id="pc-paper"
+          src="/images/pc-paper.png"
+          alt="Paper Illustration"
+        />
+        <img
+          id="pc-scissors"
+          src="/images/pc-sciss.png"
+          alt="Scissor Illustration"
+        />
+      </div>
+    </div>
+
+    <div id="game-buttons">
       <button id="rock-btn">Rock</button>
       <button id="paper-btn">Paper</button>
       <button id="scissors-btn">Scissors</button>
     </div>
 
-    <div class="arena">
-      <div class="user-side">
-        <div id="user-rock">Rock</div>
-        <div id="user-paper">Paper</div>
-        <div id="user-scissors">Scissors</div>
-      </div>
-      <div class="pc-side">
-        <div id="pc-rock">Rock</div>
-        <div id="pc-paper">Paper</div>
-        <div id="pc-scissors">Scissors</div>
-      </div>
-    </div>
+    <div id="bang"></div>
   </body>
 </html>
