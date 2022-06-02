@@ -311,15 +311,17 @@ button:hover {
 
 .celebrities {
    z-index: -1;
+   max-width: 100%;
+   overflow: hidden;
 }
 
 .celebrity {
    position: absolute;
-   width: 12vw;
-   height: auto;
+   width: auto;
+   height: 12vh;
    transform-origin: center;
    left: 44%;
-   bottom: -100%;
+   bottom: 0;
 
 }
 
@@ -430,7 +432,7 @@ button:hover {
    1% {}
 
    100% {
-      transform: scale(350%) translate(0, -19vh);
+      transform: scale(360%) translate(0, -38%);
       visibility: visible;
    }
 }
@@ -468,7 +470,5 @@ button:hover {
    visibility: visible;
    z-index: 5;
    transition: 0ms;
-   transform-origin: center;
-   bottom: -36vh;
-
+   transform-origin: bottom;
 }
