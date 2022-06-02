@@ -1,9 +1,14 @@
 * {
    margin: 0;
-   font-size: 2vw;
    --font: 'Radio Canada', sans-serif;
 
    font-family: var(--font);
+
+   @media (orientation: landscape) {
+      body {
+         font-size: 2vw;
+      }
+   }
 
 
 }
@@ -13,7 +18,7 @@ html {
    display: grid;
 
 
-   
+
 
 }
 
@@ -29,9 +34,11 @@ body {
    overflow: hidden;
 }
 
-p, button {
+p,
+button {
    font-size: 1.2rem;
 }
+
 h2 {
    font-size: 3rem;
 }
@@ -95,20 +102,20 @@ button:hover {
 
 .scoreboard {
    display: grid;
-    place-content: center;
-    place-items: center;
-    color: white;
-    gap: 0.2rem;
+   place-content: center;
+   place-items: center;
+   color: white;
+   gap: 0.2rem;
 
-    filter: drop-shadow(0 0.2rem 2px rgba(0,0,0, 0.44));
+   filter: drop-shadow(0 0.2rem 2px rgba(0, 0, 0, 0.44));
 }
 
 #round-board {
    background: white;
-    color: red;
-    padding: 0.4rem 1rem;
-    border-radius: 0.2rem;
-    height: fit-content;
+   color: red;
+   padding: 0.4rem 1rem;
+   border-radius: 0.2rem;
+   height: fit-content;
 }
 
 #scores {
@@ -126,7 +133,7 @@ button:hover {
    transform-origin: center;
 
    text-align: center;
-   
+
    display: grid;
    place-content: center;
    gap: 1rem;
@@ -149,9 +156,9 @@ button:hover {
 }
 
 
-.banger{
+.banger {
    position: absolute;
-   background-image: radial-gradient(rgba(255,255,255,1) 12%, rgba(255,255,255,0.8) 31%, rgba(255,255,255,0.6) 43%, rgba(255,255,255,0) 64%);
+   background-image: radial-gradient(rgba(255, 255, 255, 1) 12%, rgba(255, 255, 255, 0.8) 31%, rgba(255, 255, 255, 0.6) 43%, rgba(255, 255, 255, 0) 64%);
    width: 44rem;
    height: 44rem;
    justify-self: center;
@@ -176,7 +183,7 @@ button:hover {
    background: rgba(254, 0, 0, 0.853);
    box-sizing: inherit;
    position: absolute;
-   bottom:0;
+   bottom: 0;
    width: 100%;
    box-shadow: 0rem 0.8rem 1rem 1rem rgba(0, 0, 0, 0.44);
    backdrop-filter: blur(0.62rem);
@@ -190,7 +197,7 @@ button:hover {
    background: rgb(237, 237, 237);
    border: none;
    overflow: visible;
- 
+
 
    box-shadow: inset 0.2rem 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.21);
    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.396));
@@ -208,9 +215,8 @@ button:hover {
    background: none;
    transition: all ease-in-out 2000ms;
    box-shadow: none;
-   
-   z-index: 10
 
+   z-index: 10
 }
 
 #game-buttons button:hover {
@@ -241,8 +247,8 @@ button:hover {
    width: 100%;
    height: 100%;
    z-index: -10;
-   background: linear-gradient(0deg, rgba(74,0,0, 1) 20%, rgba(196, 0, 0, 1) 78%, rgba(255,0, 0,1) 100%);
-   
+   background: linear-gradient(0deg, rgba(74, 0, 0, 1) 20%, rgba(196, 0, 0, 1) 78%, rgba(255, 0, 0, 1) 100%);
+
    text-align: center;
 }
 
@@ -250,12 +256,17 @@ button:hover {
    height: 5rem;
    width: auto;
    transform-origin: center;
-   filter: drop-shadow(0 3rem 1rem rgba(0,0,0,0.7));
+   filter: drop-shadow(0 3rem 1rem rgba(0, 0, 0, 0.7));
 
 }
 
 
-#user-rock, #user-paper, #user-scissors, #pc-rock, #pc-paper, #pc-scissors {
+#user-rock,
+#user-paper,
+#user-scissors,
+#pc-rock,
+#pc-paper,
+#pc-scissors {
    position: absolute;
    transform-origin: center;
    transition: transform ease-in 400ms;
@@ -263,11 +274,16 @@ button:hover {
 
 }
 
-#user-rock, #user-paper, #user-scissors {
+#user-rock,
+#user-paper,
+#user-scissors {
    left: -20vw;
    transform: translate(0, 0);
 }
-#pc-rock, #pc-paper, #pc-scissors {
+
+#pc-rock,
+#pc-paper,
+#pc-scissors {
    right: -20vw;
    transform: translate(0, 0);
    transition-delay: 400ms;
@@ -281,11 +297,15 @@ button:hover {
 
 /* Material Movers */
 @keyframes move-r {
-   100% {transform: translate(62vw, 0);}
+   100% {
+      transform: translate(62vw, 0);
+   }
 }
 
 @keyframes move-l {
-   100% {transform: translate(-62vw, 0);}
+   100% {
+      transform: translate(-62vw, 0);
+   }
 }
 
 
@@ -328,14 +348,16 @@ button:hover {
    24% {
       transform: translate(0, 16vh) scale(200%);
    }
+
    28% {
       transform: translate(0, 16vh) scale(300%);
       backdrop-filter: blur(1rem);
       -webkit-backdrop-filter: blur(1rem);
    }
+
    54% {
       transform: translate(0, 16vh) scale(300%);
-      backdrop-filter: blur(1rem); 
+      backdrop-filter: blur(1rem);
       -webkit-backdrop-filter: blur(1rem);
 
    }
@@ -344,26 +366,26 @@ button:hover {
 /* banger */
 @keyframes shaker {
    25% {
-      transform: translate(2vh,0) scale(144%);
+      transform: translate(2vh, 0) scale(144%);
    }
+
    50% {
-      transform: translate(-2vh,0) scale(100%);
+      transform: translate(-2vh, 0) scale(100%);
    }
 
    25% {
-      transform: translate(0,2vh) scale(144%);
+      transform: translate(0, 2vh) scale(144%);
    }
 
    25% {
-      transform: translate(0,-2vh) scale(100%);
+      transform: translate(0, -2vh) scale(100%);
    }
 }
 
 /* winner mat */
 @keyframes winner-mat {
-   1% {
-      
-   }
+   1% {}
+
    100% {
       transform: scale(200%) translate(0, -24vh) rotate(-90deg);
       visibility: visible;
@@ -398,4 +420,3 @@ button:hover {
    left: 43vw !important;
    bottom: 0;
 }
-
