@@ -4,11 +4,6 @@
 
    font-family: var(--font);
 
-   @media (orientation: landscape) {
-      body {
-         font-size: 2vw;
-      }
-   }
 
 
 }
@@ -16,20 +11,32 @@
 html {
    margin: 0;
    display: grid;
-
-
+   margin: 0;
+   display: grid;
+   font-size: 2vw;
 
 
 }
 
+/* Mobile Base Sizings */
+@media (orientation: portrait) {
+   html {
+      font-size: 2vh;
+   }
+}
+
+
+
 body {
+
    margin: 0;
    padding: 0;
    height: 100vh;
    width: 100%;
    display: grid;
    background: red;
-   font-family: 'Radio Canada', sans-serif;
+   font-family: 'Radio Canada',
+      sans-serif;
    box-sizing: border-box;
    overflow: hidden;
 }
@@ -167,6 +174,9 @@ button:hover {
    z-index: -1;
    backdrop-filter: blur(0.2rem);
    -webkit-backdrop-filter: blur(0.2rem);
+   /* transform: scale(20%);
+   transition: transform ease-in 2s;
+   transition-delay: 1s; */
    animation: shaker 0.07s ease-in 0s infinite forwards;
 
 }
@@ -252,9 +262,17 @@ button:hover {
    text-align: center;
 }
 
+.arena>div {
+   width: 100%;
+   height: 100%;
+   display: grid;
+   align-items: center;
+}
+
+
 .arena img {
-   height: 5rem;
-   width: auto;
+   height: auto;
+   width: 20vw;
    transform-origin: center;
    filter: drop-shadow(0 3rem 1rem rgba(0, 0, 0, 0.7));
 
@@ -277,19 +295,33 @@ button:hover {
 #user-rock,
 #user-paper,
 #user-scissors {
-   left: -20vw;
+   left: -22vw;
    transform: translate(0, 0);
 }
 
 #pc-rock,
 #pc-paper,
 #pc-scissors {
-   right: -20vw;
+   right: -22vw;
    transform: translate(0, 0);
    transition-delay: 400ms;
 
 }
 
+
+.celebrities {
+   z-index: -1;
+}
+
+.celebrity {
+   position: absolute;
+   width: 12vw;
+   height: auto;
+   transform-origin: center;
+   left: 44%;
+   bottom: -100%;
+
+}
 
 
 
@@ -392,6 +424,16 @@ button:hover {
    }
 }
 
+/* drew mat */
+
+@keyframes drew-mat {
+   1% {}
+
+   100% {
+      transform: scale(350%) translate(0, -19vh);
+      visibility: visible;
+   }
+}
 
 
 /* animation classes */
@@ -417,6 +459,16 @@ button:hover {
    visibility: visible;
    transition: 0ms;
    transform-origin: center;
-   left: 43vw !important;
-   bottom: 0;
+   left: 40vw !important;
+   bottom: -8vh;
+}
+
+.raise-drew {
+   animation: drew-mat 2s ease-out 0.1s forwards;
+   visibility: visible;
+   z-index: 5;
+   transition: 0ms;
+   transform-origin: center;
+   bottom: -36vh;
+
 }

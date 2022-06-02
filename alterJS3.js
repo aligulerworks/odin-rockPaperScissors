@@ -23,6 +23,8 @@ const pcRock = document.getElementById('pc-rock');
 const pcPaper = document.getElementById('pc-paper');
 const pcScissors = document.getElementById('pc-scissors');
 
+const draw = document.getElementById('draw');
+
 // Banger-Shaker
 const bang = document.getElementById('bang');
 
@@ -62,7 +64,7 @@ function game(e) {
       round++;
       bringFront(smash);
       scoreBringer(scores);
-      winner('drew');
+      winner(3);
     } else if (
       (compS === 'rock') & (userS === 'scissors') ||
       (compS === 'paper') & (userS === 'rock') ||
@@ -203,6 +205,7 @@ function winner(mat) {
    userRock.classList.remove('winner');
    userPaper.classList.remove('winner');
    userScissors.classList.remove('winner');
+   draw.classList.remove('raise-drew');
    void userRock.offsetWidth;
    if(mat == 'rock') {
       setTimeout(() => {
@@ -218,6 +221,13 @@ function winner(mat) {
          userScissors.classList.add('winner');
          }, "1000")
 
-   } 
+   } else if (mat == 3) {
+     console.log(mat);
+    setTimeout(() => {
+    draw.classList.add('raise-drew');
+    }, "1000")
+
+} 
+
 
 }
