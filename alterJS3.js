@@ -181,7 +181,7 @@ function bringFront(mat) {
   
   setTimeout(() => {
    bang.classList.add('banger');
- }, "600");
+ }, "744");
   setTimeout(() => {
      bang.classList.remove('banger');
    }, "2000");
