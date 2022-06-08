@@ -272,7 +272,7 @@ button:hover {
 
 .arena img {
    height: auto;
-   width: 26vmin;
+   width: 19vw;
    transform-origin: center;
    filter: drop-shadow(0 3rem 1rem rgba(0, 0, 0, 0.7));
    position: absolute;
@@ -291,14 +291,14 @@ button:hover {
 #user-rock,
 #user-paper,
 #user-scissors {
-   left: -22vw;
+   left: -32vw;
    transform: translate(0, 0);
 }
 
 #pc-rock,
 #pc-paper,
 #pc-scissors {
-   right: -22vw;
+   right: -32vw;
    transform: translate(0, 0);
    transition-delay: 400ms;
 
@@ -328,13 +328,13 @@ button:hover {
 /* Material Movers */
 @keyframes move-r {
    100% {
-      transform: translate(62vw, 0);
+      transform: translate(69vw, 0);
    }
 }
 
 @keyframes move-l {
    100% {
-      transform: translate(-62vw, 0);
+      transform: translate(-69vw, 0);
    }
 }
 
@@ -417,7 +417,7 @@ button:hover {
    1% {}
 
    100% {
-      transform: scale(182%) translate(0, -26vh) rotate(-90deg);
+      transform: scale(132%) translate(0, -30vh) rotate(-90deg);
       visibility: visible;
    }
 }
