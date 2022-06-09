@@ -51,6 +51,10 @@ function gameStart() {
   round = 0;
   scores.textContent = `You: ${userScore} : Me: ${compScore}`;
   smash.textContent = `Bring it on!`;
+  bringFront(smash);
+  userRock.classList.remove('winner');
+  userPaper.classList.remove('winner');
+  userScissors.classList.remove('winner');
   document.querySelector('#game-buttons').addEventListener('click', game);
 }
 
@@ -60,14 +64,9 @@ function game(e) {
   let userS = e.target.textContent.toLowerCase();
   let compS = computerPlay();
   console.log(userS, compS);
-
-
-  if (round < 5) {
-    actionS('user', userS);
-    actionS('pc', compS);
+  const comparator = () => {
     if (compS === userS) {
       smash.textContent = `It's a Draw Barrymoore!`;
-      round++;
       bringFront(smash);
       scoreBringer(scores);
       winner(3);
@@ -77,14 +76,12 @@ function game(e) {
       (compS === 'scissors') & (userS === 'paper')
     ) {
       smash.textContent = `You loose(r)! ${compS} beats ${userS}!`;
-      round++;
       compScore++;
       bringFront(smash);
       scoreBringer(scores);
       winner(compS);
     } else if (userS === 'rock' || userS === 'paper' || userS === 'scissors') {
       smash.textContent = `You win! ${userS} beats ${compS}!`;
-      round++;
       userScore++;
       bringFront(smash);
       scoreBringer(scores);
@@ -93,12 +90,24 @@ function game(e) {
       smash.textContent = `Come on! You can do it!`;
       bringFront(smash);
     }
-    roundBoard.textContent = `Round: ${round}`;
-  } else {
-    setTimeout(() => {
-    gameResult(userScore, compScore);
-  }, "3300")
   }
+
+  if (round <= 3) {
+    actionS('user', userS);
+    actionS('pc', compS);
+    comparator();
+    round++;
+    roundBoard.textContent = `Round: ${round}`;
+  } else if( round === 4) {
+    actionS('user', userS);
+    actionS('pc', compS);
+    comparator();
+    round++;
+    roundBoard.textContent = `Round: ${round}`;
+    setTimeout(() => {
+      gameResult(userScore, compScore);
+    }, "3300")   
+  } else {}
   scores.textContent = `You: ${userScore} : Me: ${compScore}`;
 
 

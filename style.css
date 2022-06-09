@@ -312,21 +312,33 @@ button:hover {
 
 
 .celebrities {
-   z-index: -1;
-   max-width: 100%;
-   overflow: hidden;
+   width: 100vw;
+   display: grid;
+   justify-content: center;
+   justify-items: center;
 }
 
 .celebrity {
-   position: absolute;
+   position: relative;
    width: auto;
    height: 12vh;
    transform-origin: center;
-   left: 44%;
    bottom: 0;
+   align-self: end;
+   z-index: -1;
+   visibility: hidden;
+
+
 
 }
 
+
+.raise-drew {
+   animation: drew-mat 2s ease-out 0.1s forwards;
+   visibility: visible;
+   transition: 0ms;
+   transform-origin: bottom;
+}
 
 
 /* ANIMATIONS  */
@@ -465,12 +477,4 @@ button:hover {
    transform-origin: center;
    left: 40vw !important;
    bottom: -8vh;
-}
-
-.raise-drew {
-   animation: drew-mat 2s ease-out 0.1s forwards;
-   visibility: visible;
-   z-index: 5;
-   transition: 0ms;
-   transform-origin: bottom;
 }
