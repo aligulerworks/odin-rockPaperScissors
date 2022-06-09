@@ -1,20 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-      <!-- google fonts  -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
-      <!-- end google fonts -->
-</head>
-<body>
-   
-</body>
+    <!-- google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- end google fonts -->
 
-<script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="start-modal">
+      <button id="start">Start</button>
+    </div>
+
+    <div id="interactions">
+      <div class="scoreboard">
+        <h3 id="round-board">Round: 0</h3>
+        <h3 id="scores">0 : 0</h3>
+      </div>
+      <div class="round-interactions">
+        <h3 id="smash">Bring It On!</h3>
+      </div>
+    </div>
+
+    <div class="arena">
+      <div class="user-side">
+        <img
+          id="user-rock"
+          src="./images/user-rock.png"
+          alt="Rock Illustration"
+        />
+        <img
+          id="user-paper"
+          src="./images/user-paper.png"
+          alt="Paper Illustration"
+        />
+        <img
+          id="user-scissors"
+          src="./images/user-sciss.png"
+          alt="Scissor Illustration"
+        />
+
+      </div>
+      <div class="pc-side" id="pc-side">
+        <img id="pc-rock" src="./images/pc-rock.png" alt="Rock Illustration" />
+        <img
+          id="pc-paper"
+          src="./images/pc-paper.png"
+          alt="Paper Illustration"
+        />
+        <img
+          id="pc-scissors"
+          src="./images/pc-sciss.png"
+          alt="Scissor Illustration"
+        />
+      </div>
+    </div>
+
+    <div id="game-buttons">
+      <button id="rock-btn">Rock</button>
+      <button id="paper-btn">Paper</button>
+      <button id="scissors-btn">Scissors</button>
+    </div>
+
+    <div id="bang"></div>
+    <div class="celebrities">
+        <img
+        id="draw" class="celebrity"
+        src="./images/drew.png"
+        alt="Drew Barrymoore"/>
+      </div>
+  </body>
 </html>

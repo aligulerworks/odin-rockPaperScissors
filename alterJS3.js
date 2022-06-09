@@ -55,7 +55,6 @@ function gameStart() {
   userRock.classList.remove('winner');
   userPaper.classList.remove('winner');
   userScissors.classList.remove('winner');
-  draw.classList.remove('raise-drew');
   document.querySelector('#game-buttons').addEventListener('click', game);
 }
 
