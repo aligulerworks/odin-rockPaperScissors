@@ -1,15 +1,21 @@
 'use strict';
 
 // VARIABLES
-// Variables for Start Modal & Buttons
+
+// Variables for Start Modal
 const startModal = document.getElementById('start-modal');
 const start = document.getElementById('start');
-//buttons
+const scoreBoard = document.querySelector('.scoreboard');
+
+// Buttons
 const rock = document.getElementById('rock-btn');
 const paper = document.getElementById('paper-btn');
 const scissors = document.getElementById('scissors-btn');
 
-// materials
+// Computer reactions
+const smash = document.getElementById('smash');
+
+// Materials
 const userRock = document.getElementById('user-rock');
 const userPaper = document.getElementById('user-paper');
 const userScissors = document.getElementById('user-scissors');
@@ -18,240 +24,235 @@ const pcRock = document.getElementById('pc-rock');
 const pcPaper = document.getElementById('pc-paper');
 const pcScissors = document.getElementById('pc-scissors');
 
-// appearance status(es)
-// try these later -> simplify visibilities by assignning variables to them here
+const draw = document.getElementById('draw');
 
-// LISTENERS
-start.addEventListener('click', startGame);
+// Banger-Shaker
+const bang = document.getElementById('bang');
 
-// START GAME
-function startGame() {
-  startModal.remove();
-  let playerScore = userPlay();
-  console.log(playerScore);
+// Scores and Rounds
+const roundBoard = document.getElementById('round-board');
+let round = 0,
+  userScore = 0,
+  compScore = 0;
+let scores = document.getElementById('scores');
+console.log(scores);
+
+const detachListeners = () =>
+  document.querySelector('body').removeEventListener('click', listenerFunction);
+
+// HIT START
+start.addEventListener('click', gameStart);
+
+// GAME 
+function gameStart() {
+  startModal.style.display = 'none';
+  compScore = 0,
+  userScore = 0,
+  round = 0;
+  scores.textContent = `You: ${userScore} : Me: ${compScore}`;
+  smash.textContent = `Bring it on!`;
+  bringFront(smash);
+  userRock.classList.remove('winner');
+  userPaper.classList.remove('winner');
+  userScissors.classList.remove('winner');
+  draw.classList.remove('raise-drew');
+  document.querySelector('#game-buttons').addEventListener('click', game);
 }
 
-// ROUND COUNT & FINAL RESULT
+function game(e) {
+  e.preventDefault;
 
-const checkRound = function (runner) {
-  // decide whose turn
-  // return rounds count
-  // return final result
-  // collect scores
-  // return scores
-
-  true;
-};
-
-function action(from, score) {
-  console.log(score);
-  console.log(from);
-
-  // animate what to where
-  if (from === 'user') {
-    if (score === 1) {
-      userPaper.hide;
-      userScissors.hide;
-
-      userRock.moveRight;
-
-      userPaper.moveLeft;
-      userScissors.moveLeft;
-    } else if (score === 2) {
-      userRock.hide;
-      userScissors.hide;
-
-      userPaper.moveRight;
-
-      userRock.moveLeft;
-      userScissors.moveLeft;
-    } else if (score === 3) {
-      userRock.hide;
-      userPaper.hide;
-
-      userScissors.moveRight;
-
-      userRock.moveLeft;
-      userPaper.moveLeft;
+  let userS = e.target.textContent.toLowerCase();
+  let compS = computerPlay();
+  console.log(userS, compS);
+  const comparator = () => {
+    if (compS === userS) {
+      smash.textContent = `It's a Draw Barrymoore!`;
+      bringFront(smash);
+      scoreBringer(scores);
+      winner(3);
+    } else if (
+      (compS === 'rock') & (userS === 'scissors') ||
+      (compS === 'paper') & (userS === 'rock') ||
+      (compS === 'scissors') & (userS === 'paper')
+    ) {
+      smash.textContent = `You loose(r)! ${compS} beats ${userS}!`;
+      compScore++;
+      bringFront(smash);
+      scoreBringer(scores);
+      winner(compS);
+    } else if (userS === 'rock' || userS === 'paper' || userS === 'scissors') {
+      smash.textContent = `You win! ${userS} beats ${compS}!`;
+      userScore++;
+      bringFront(smash);
+      scoreBringer(scores);
+      winner(userS);
+    } else {
+      smash.textContent = `Come on! You can do it!`;
+      bringFront(smash);
     }
-  } else if (from === 'pc') {
-    if (score === 1) {
-      shot = userRock;
-      unshot1 = userPaper;
-      unshot2 = userScissors;
-    }
-  } else if (score === 2) {
-    shot = userPaper;
-    unshot1 = userRock;
-    unshot2 = userScissors;
-  } else if (score === 3) {
-    shot = userScissors;
-    unshot1 = userRock;
-    unshot2 = userPaper;
   }
 
-  const hide = (style.visibility = 'hidden');
-  const moveLeft = (style.transform = 'translate(-60vw, 0)');
-  const moveRight = (style.transform = 'translate(60vw, 0)');
+  if (round <= 3) {
+    actionS('user', userS);
+    actionS('pc', compS);
+    comparator();
+    round++;
+    roundBoard.textContent = `Round: ${round}`;
+  } else if( round === 4) {
+    actionS('user', userS);
+    actionS('pc', compS);
+    comparator();
+    round++;
+    roundBoard.textContent = `Round: ${round}`;
+    setTimeout(() => {
+      gameResult(userScore, compScore);
+    }, "3300")   
+  } else {}
+  scores.textContent = `You: ${userScore} : Me: ${compScore}`;
+
+
 }
 
-// // USER PLAY
-// function userPlay() {
-//   rock.addEventListener('click', () => {
-//     action('user', 1);
-//   });
-//   paper.addEventListener('click', () => {
-//     action('user', 2);
-//   });
-//
-//   scissors.addEventListener('click', () => {
-//     action('user', 3);
-//   });
-// }
 
-// computerPlay;
+// FINISH AND RESTART
+function gameResult(uS, cS) {
+  roundBoard.textContent = 'Finished!';
+  startModal.style.display = '';
+  scoreBoard.style.zIndex = '6';
+  smash.style.zIndex = '6';
+  start.textContent = 'Restart?';
 
-// // COMPUTER PLAY
-// function computerPlay() {
-//   let result,
-//     generator = Math.floor(Math.random() * 3) + 1;
-//
-//   if (generator === 1) {
-//     pcPaper.style.visibility = 'hidden';
-//     pcScissors.style.visibility = 'hidden';
-//
-//     pcPaper.style.transform = 'translate(60vw, 0)';
-//     pcScissors.style.transform = 'translate(60vw, 0)';
-//
-//     pcRock.style.visibility = 'visible';
-//     pcRock.style.transform = 'translate(-60vw, 0)';
-//     result = 'rock';
-//   }
-//   if (generator === 2) {
-//     pcRock.style.visibility = 'hidden';
-//     pcScissors.style.visibility = 'hidden';
-//
-//     pcRock.style.transform = 'translate(60vw, 0)';
-//     pcScissors.style.transform = 'translate(60vw, 0)';
-//
-//     pcPaper.style.visibility = 'visible';
-//     pcPaper.style.transform = 'translate(-60vw, 0)';
-//     result = 'paper';
-//   }
-//   if (generator === 3) {
-//     pcRock.style.visibility = 'hidden';
-//     pcPaper.style.visibility = 'hidden';
-//
-//     pcRock.style.transform = 'translate(60vw, 0)';
-//     pcPaper.style.transform = 'translate(60vw, 0)';
-//
-//     pcScissors.style.visibility = 'visible';
-//     pcScissors.style.transform = 'translate(-60vw, 0)';
-//     result = 'scissors';
-//   }
-//   return generator;
-// }
-//
-// // USER ACTION
-// function userPlay() {
-//   let userHit;
-//   rock.addEventListener('click', (e) => {
-//     console.log(e.ctrlKey);
-//     userPaper.style.visibility = 'hidden';
-//     userScissors.style.visibility = 'hidden';
-//
-//     userPaper.style.transform = 'translate(-60vw, 0)';
-//     userScissors.style.transform = 'translate(-60vw, 0)';
-//
-//     userRock.style.visibility = 'visible';
-//     userRock.style.transform = 'translate(60vw, 0)';
-//     return 1;
-//   });
-//
-//   paper.addEventListener('click', () => {
-//     userRock.style.visibility = 'hidden';
-//     userScissors.style.visibility = 'hidden';
-//
-//     userRock.style.transform = 'translate(-60vw, 0)';
-//     userScissors.style.transform = 'translate(-60vw, 0)';
-//
-//     userPaper.style.visibility = 'visible';
-//     userPaper.style.transform = 'translate(60vw, 0)';
-//     return 2;
-//   });
-//
-//   scissors.addEventListener('click', () => {
-//     userRock.style.visibility = 'hidden';
-//     userPaper.style.visibility = 'hidden';
-//
-//     userRock.style.transform = 'translate(-60vw, 0)';
-//     userPaper.style.transform = 'translate(-60vw, 0)';
-//
-//     userScissors.style.visibility = 'visible';
-//     userScissors.style.transform = 'translate(60vw, 0)';
-//     return 3;
-// });
-//   return userHit;
-// }
-//
-// // GAME //
-// function game() {
-//   // scores & counters ready
-//   let playerScore = 0,
-//     computerScore = 0;
-//
-//   //remove Starter
-//   startModal.remove();
-// }
-// // A ROUND
-// userPlay();
-// if (userPlay === computerPlay) {
-//   console.log(
-//     `It's a Draw Barrymoore!
-// Yours: ${player}
-// Mine: ${computer}
-//       `
-//   );
-// } else if (
-//   (userPlay() === 1) & (computerPlay() === 2) ||
-//   (userPlay() === 3) & (computerPlay() === 1) ||
-//   (userPlay() === 2) & (computerPlay() === 3)
-// ) {
-//   computerScore = computerScore + 1;
-//   console.log(
-//     `You loose!
-//                   Yours: ${playerPick}
-//                   Mine: ${computerPick}`
-//   );
-// } else if (userPlay() === 1 || userPlay() === 2 || userPlay() === 3) {
-//   playerScore = playerScore + 1;
-//   console.log(
-//     `You win!
-// Yours: ${playerPick}
-// Mine: ${computerPick}`
-//   );
-// } else {
-//   false;
-// }
-//
-// function gameResult(player, computer) {
-//   if (player > computer) {
-//     console.log(`YOU WIN!`);
-//   } else if (player < computer) {
-//     console.log('I WIN MADAFAKA!');
-//   } else {
-//     console.log(`WE'RE TIED.`);
-//   }
-// }
-//
-// // Start
-// start.addEventListener('click', game);
-//
-// // ANIMATIONS
-//
-// // Chosen Elements Actions (rock, paper & scissors)
-//
-// function shootElements(what, who) {
-//   let shootDirection = 60;
-//   who === user ? shootDirection * -1 : user;
-// }
+
+  if (uS > cS) {
+    smash.textContent = `YOU WIN!`;
+    console.log(`YOU WIN!`);
+  } else if (uS < cS) {
+    smash.textContent = `I WIN MADAFAKA!`;
+
+    console.log('I WIN MADAFAKA!');
+  } else {
+    smash.textContent = `TIED!`;
+    console.log(`WE'RE TIED.`);
+  }
+}
+
+// COMPUTER PLAY - OK
+function computerPlay() {
+  let generator = Math.floor(Math.random() * 3) + 1;
+  let compS;
+  switch (generator) {
+    case 1:
+      compS = 'rock';
+      break;
+    case 2:
+      compS = 'paper';
+      break;
+    case 3:
+      compS = 'scissors';
+      break;
+  }
+  return compS;
+}
+
+//ANIMATIONS - MATERIALS
+
+function actionS(from, score) {
+  const moveRight = (material) => {
+    material.classList.add('move-right');
+    setTimeout(() => {
+      material.classList.remove('move-right');
+      void material.offsetWidth;
+       }, "2000")
+  };
+  const moveLeft = (material) => {
+     material.classList.add('move-left');
+     setTimeout(() => {
+      material.classList.remove('move-left');
+      void material.offsetWidth;
+       }, "2000")
+  };
+ 
+ 
+
+  // animate what to where
+  if (from == 'user') {
+    if (score == 'rock') {
+       moveRight(userRock);
+    } else if (score == 'paper') {
+      moveRight(userPaper);
+    } else if (score == 'scissors') {
+      moveRight(userScissors);
+    }
+  } else if (from == 'pc') {
+    if (score == 'rock') {
+      moveLeft(pcRock);
+    } else if (score == 'paper') {
+      moveLeft(pcPaper);
+    } else if (score == 'scissors') {
+      moveLeft(pcScissors);
+    }
+  } 
+ 
+}
+
+//ANIMATIONS - SCORE SMASH
+//smasher
+function bringFront(mat) {
+  console.log(mat);
+  mat.classList.remove('bring-front');
+  void mat.offsetWidth;
+  mat.classList.add('bring-front');
+  
+  setTimeout(() => {
+   bang.classList.add('banger');
+ }, "744");
+  setTimeout(() => {
+     bang.classList.remove('banger');
+   }, "2000");
+
+  
+}
+
+// animation - scores
+function scoreBringer(mat) {
+  console.log(mat);
+  mat.classList.remove('score-bringer');
+  void mat.offsetWidth;
+  mat.classList.add('score-bringer');
+
+}
+
+
+// animation - winner material
+
+function winner(mat) {
+   userRock.classList.remove('winner');
+   userPaper.classList.remove('winner');
+   userScissors.classList.remove('winner');
+   draw.classList.remove('raise-drew');
+   void userRock.offsetWidth;
+   if(mat == 'rock') {
+      setTimeout(() => {
+         userRock.classList.add('winner');
+         }, "1000")
+   } else if (mat == 'paper') {
+         setTimeout(() => {
+         userPaper.classList.add('winner');
+         }, "1000")
+
+   } else if (mat == 'scissors') {
+         setTimeout(() => {
+         userScissors.classList.add('winner');
+         }, "1000")
+
+   } else if (mat == 3) {
+     console.log(mat);
+    setTimeout(() => {
+    draw.classList.add('raise-drew');
+    }, "1000")
+
+} 
+
+
+}
