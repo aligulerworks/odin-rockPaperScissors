@@ -160,7 +160,7 @@ button:hover {
    font-size: 2.2rem;
    text-shadow: 0rem 0rem 1rem red;
    position: absolute;
-   top: 32vh;
+   top: 25%;
    justify-self: center;
    align-self: center;
    width: auto;
