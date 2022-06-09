@@ -5,6 +5,7 @@
 // Variables for Start Modal
 const startModal = document.getElementById('start-modal');
 const start = document.getElementById('start');
+const scoreBoard = document.querySelector('.scoreboard');
 
 // Buttons
 const rock = document.getElementById('rock-btn');
@@ -42,9 +43,14 @@ const detachListeners = () =>
 // HIT START
 start.addEventListener('click', gameStart);
 
-//GAME - ok
+// GAME 
 function gameStart() {
-  startModal.remove();
+  startModal.style.display = 'none';
+  compScore = 0,
+  userScore = 0,
+  round = 0;
+  scores.textContent = `You: ${userScore} : Me: ${compScore}`;
+  smash.textContent = `Bring it on!`;
   document.querySelector('#game-buttons').addEventListener('click', game);
 }
 
@@ -89,15 +95,24 @@ function game(e) {
     }
     roundBoard.textContent = `Round: ${round}`;
   } else {
+    setTimeout(() => {
     gameResult(userScore, compScore);
+  }, "3300")
   }
   scores.textContent = `You: ${userScore} : Me: ${compScore}`;
 
 
 }
 
+
+// FINISH AND RESTART
 function gameResult(uS, cS) {
   roundBoard.textContent = 'Finished!';
+  startModal.style.display = '';
+  scoreBoard.style.zIndex = '6';
+  smash.style.zIndex = '6';
+  start.textContent = 'Restart?';
+
 
   if (uS > cS) {
     smash.textContent = `YOU WIN!`;
