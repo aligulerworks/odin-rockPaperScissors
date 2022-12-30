@@ -128,7 +128,7 @@ function gameResult(uS, cS) {
     smash.textContent = `YOU WIN!`;
     console.log(`YOU WIN!`);
   } else if (uS < cS) {
-    smash.textContent = `I WIN MADAFAKA!`;
+    smash.textContent = `I WIN!`;
 
     console.log('I WIN MADAFAKA!');
   } else {
